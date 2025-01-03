@@ -1,44 +1,33 @@
-const btn  = document.querySelector("button");
+let form = document.querySelector("form");
+
 let num1 = document.querySelector("#number1");
 let num2 = document.querySelector("#number2");
-let table = document.querySelector("#table");
-const ul = document.createElement("ul");
-const li = [document.createElement("li")]
 
+let table = document.querySelector(".table");
 
+function handleSubmit(event) {
+  event.preventDefault();
 
-btn.addEventListener("click", () => {
+  const numberOne = parseInt(num1.value);
+  const numberTwo = parseInt(num2.value);
 
-    let valor = parseInt(num1.value);
-    let valor2 = parseInt(num2.value);
-    
-    let results = [];
+  if (!numberOne || !numberTwo) {
+    return;
+  }
 
-    
+  table.innerHTML = `<span class="table-empty-message">Informe um número para calcular uma tabuada...</span>`;
 
-    for(let i=1;i<=valor2;i++){
-        
-        const result = valor * i; // Calcula o resultado para o valor atual de i
-        results +=`${valor} x ${i} = ${result}\n`;
-        table.appendChild(ul);
-        ul.appendChild(li);
-        lis.textContent = results;
+  for (let index = 1; index <= numberTwo; index++) {
+    const li = document.createElement("li");
 
-    }
+    li.classList.add("operation-item");
 
-    table.value = results.trim();
+    li.innerHTML = `<span class="result-base">${numberOne}</span><span>*</span><span>${index}</span><span>=</span><span>${
+      numberOne * index
+    }</span>`;
 
-    const h2 = document.querySelector("h2");
-    h2.textContent = `Tabuada do número: ${valor}`;
+    table.appendChild(li);
+  }
+}
 
-    console.log(valor, valor2);
-
-
-})
-
-
-
-
-
-
-
+form.addEventListener("submit", handleSubmit);
