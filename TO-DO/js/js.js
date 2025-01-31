@@ -63,7 +63,7 @@ function renderItems() {
   );
 }
 
-function updateTodo(index) {
+function updateTodo() {
   const position = parseInt(editForm.getAttribute("data-index"));
   todoArray[position] = editInput.value;
 
